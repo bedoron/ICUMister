@@ -6,8 +6,12 @@ from verification.FaceVerificationDummy import FaceVerificationDummy
 
 class HandlersFactory(object):
     @staticmethod
-    def create_dummies():
+    def create_pipeline_dummies():
         """
         :return:
         """
-        return CameraHandlerDummy(), FaceIdentificationDummy(), FaceVerificationDummy(), NotifierDummy()
+        return FaceIdentificationDummy(), FaceVerificationDummy(), NotifierDummy()
+
+    @staticmethod
+    def create_camera_dummy():
+        return CameraHandlerDummy()

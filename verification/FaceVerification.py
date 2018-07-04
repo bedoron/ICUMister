@@ -1,6 +1,5 @@
 import logging
 from abc import ABCMeta, abstractmethod
-from logging import Logger
 
 
 class FaceVerificationResult(object):

@@ -2,7 +2,6 @@ import json
 
 from utils.AppRunner import AppRunner
 from utils.HandlersFactory import HandlersFactory
-from utils.JPEGHandler import JPEGHandler
 from utils.logger import get_logger
 
 from utils.runtime import set_sigint
@@ -15,16 +14,11 @@ def load_config():
 
 def main():
     logger = get_logger("ICUMister")
-
-    camera_handler, face_identification, face_verification, notifier = HandlersFactory.create_dummies()
-    set_sigint(camera_handler)
     config = load_config()
 
-    jpeg_handler = JPEGHandler(face_identification, face_verification, notifier)
-
-    app_runner = AppRunner(config)
-    app_runner.initialize()
-    app_runner.run(camera_handler, jpeg_handler)
+    app_runner = AppRunner(config, HandlersFactory.create_camera_dummy, HandlersFactory.create_pipeline_dummies)
+    set_sigint(app_runner)
+    app_runner.run()
 
     logger.info("Bye bye")
 

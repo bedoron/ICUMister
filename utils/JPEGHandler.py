@@ -4,18 +4,19 @@ from verification.FaceVerification import FaceVerification
 from KeyVaultFetcher import KeyVaultFetcher
 import logging
 
+
 class JPEGHandler(object):
-    def __init__(self, face_identification, face_verification, notifier):
+    def __init__(self, pipeline_supplier):
         """
-        :type face_identification: FaceIdentification
-        :type face_verification: FaceVerification
-        :type notifier: Notifier
+        :type pipeline_supplier: callabe
         """
         super(JPEGHandler, self).__init__()
-        self._notifier = notifier
-        self._face_verification = face_verification
-        self._face_identification = face_identification
         self._logger = logging.getLogger("ICUMister." + __name__)
+
+        face_identification, face_verification, notifier = pipeline_supplier()
+        self._notifier = notifier  # type: Notifier
+        self._face_verification = face_verification  # type: FaceVerification
+        self._face_identification = face_identification  # type: FaceIdentification
 
     def handle(self, jpeg_data):
         if not self._face_identification.is_face(jpeg_data):
