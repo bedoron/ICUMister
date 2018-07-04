@@ -1,10 +1,20 @@
 from peripherals.CameraHandler import CameraHandler
+from utils.FileContainer import FileContainer
+
+
+class DummyFileContainer(FileContainer):
+    def __init__(self, fname):
+        super(DummyFileContainer, self).__init__()
+        self._fname = fname
+
+    def read(self):
+        with open(self._fname, 'rb') as f:
+            return f.read()
 
 
 class CameraHandlerDummy(CameraHandler):
-
     def get_mjpeg(self):
-        return "BlaBla".encode("base64")
+        return DummyFileContainer('resources/images/doron.jpg')
 
     def _setup_camera(self):
         pass

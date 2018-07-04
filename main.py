@@ -1,4 +1,5 @@
 import json
+import logging
 
 from utils.AppRunner import AppRunner
 from utils.HandlersFactory import HandlersFactory
@@ -13,10 +14,11 @@ def load_config():
 
 
 def main():
+    get_logger('msrestazure', logging.WARNING)
     logger = get_logger("ICUMister")
     config = load_config()
 
-    app_runner = AppRunner(config, HandlersFactory.create_camera_dummy, HandlersFactory.create_pipeline_dummies)
+    app_runner = AppRunner(config, HandlersFactory.create_camera_dummy, HandlersFactory.create_pipeline_rest)
     set_sigint(app_runner)
     app_runner.run()
 

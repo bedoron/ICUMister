@@ -31,7 +31,7 @@ class FaceVerification(object):
         self._logger = logging.getLogger("ICUMister." + __name__)
 
     @abstractmethod
-    def verify_face(self, face_image):
+    def verify_face(self, face_image, face_identification_result):
         """
         Checks if the supplied face is verified (exists in the user's database)
         :rtype: FaceVerificationResult

@@ -15,7 +15,7 @@ class FaceIdentification(object):
     @abstractmethod
     def is_face(self, face_image):
         """
-        check if the image is an actual face, if so, return true otherwise false
-        :rtype: bool
+        list of face ids, if no face is detected then return empty list
+        :rtype: list
         """
         raise NotImplementedError()

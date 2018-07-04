@@ -1,6 +1,12 @@
 {
-  "faceAPIEndpoint": "https://westcentralus.api.cognitive.microsoft.com/face/v1.0",
   "faceAPIKeys": ["faceKey1", "faceKey2"],
+
+  "cognitive_face": {
+    "subscription": "d70f123a-259f-4fc5-b9af-82939d92b9d2",
+    "endpoint": "https://westeurope.api.cognitive.microsoft.com/face/v1.0",
+    "name": "faceAPI",
+    "kv_id": "faceKey1"
+  },
 
   "keyvault": {
     "client_id": "",

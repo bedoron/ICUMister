@@ -14,7 +14,7 @@ class CameraHandler(object):
     def get_mjpeg(self):
         """
         Returns image as base64
-        :rtype: str
+        :rtype: utils.FileContainer.FileContainer
         """
         raise NotImplementedError()
 
