@@ -1,0 +1,12 @@
+{
+  "faceAPIEndpoint": "https://westcentralus.api.cognitive.microsoft.com/face/v1.0",
+  "faceAPIKeys": ["faceKey1", "faceKey2"],
+
+  "keyvault": {
+    "client_id": "",
+    "tenant": "",
+    "resource": "https://vault.azure.net",
+    "secret": "",
+    "vault_url": "https://icumisterkv.vault.azure.net/"
+  }
+}

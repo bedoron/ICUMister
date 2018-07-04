@@ -2,14 +2,19 @@ from identification.FaceIdentification import FaceIdentification
 from notifier.Notifier import Notifier
 from peripherals.CameraHandler import CameraHandler
 from verification.FaceVerification import FaceVerification
+from KeyVaultFetcher import KeyVaultFetcher
 from logging import Logger
 
 
-# TODO: Add logger
 class AppRunner(object):
-    def __init__(self):
+    def __init__(self, config):
         super(AppRunner, self).__init__()
+        self._config = config
+        self._kv = KeyVaultFetcher(self._config)
 
+    def initialize(self):
+        self._face_api_key = self._kv.get_secret('faceKey1')
+        
     def run(self, logger, camera_handler, face_identification, face_verification, notifier):
         """
         :type logger: Logger
