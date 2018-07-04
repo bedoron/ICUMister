@@ -2,6 +2,7 @@ import json
 
 from utils.AppRunner import AppRunner
 from utils.HandlersFactor import HandlersFactory
+from utils.JPEGHandler import JPEGHandler
 from utils.logger import get_logger
 
 from utils.runtime import set_sigint
@@ -19,9 +20,11 @@ def main():
     set_sigint(logger, camera_handler)
     config = load_config()
 
+    jpeg_handler = JPEGHandler(logger, face_identification, face_verification, notifier)
+
     app_runner = AppRunner(config)
     app_runner.initialize()
-    app_runner.run(logger, camera_handler, face_identification, face_verification, notifier)
+    app_runner.run(camera_handler, jpeg_handler)
 
     logger.info("Bye bye")
 
