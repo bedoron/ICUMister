@@ -1,3 +1,4 @@
+import logging
 from abc import ABCMeta, abstractmethod
 from logging import Logger
 
@@ -26,12 +27,9 @@ class FaceVerificationResult(object):
 class FaceVerification(object):
     __metaclass__ = ABCMeta
 
-    def __init__(self, logger):
-        """
-        :type logger: Logger
-        """
+    def __init__(self):
         super(FaceVerification, self).__init__()
-        self._logger = logger
+        self._logger = logging.getLogger("ICUMister." + __name__)
 
     @abstractmethod
     def verify_face(self, face_image):

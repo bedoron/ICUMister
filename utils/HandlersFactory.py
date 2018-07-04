@@ -6,10 +6,8 @@ from verification.FaceVerificationDummy import FaceVerificationDummy
 
 class HandlersFactory(object):
     @staticmethod
-    def create_dummies(logger):
+    def create_dummies():
         """
-        :param logger:
         :return:
         """
-        return CameraHandlerDummy(logger), FaceIdentificationDummy(logger), FaceVerificationDummy(
-            logger), NotifierDummy(logger)
+        return CameraHandlerDummy(), FaceIdentificationDummy(), FaceVerificationDummy(), NotifierDummy()

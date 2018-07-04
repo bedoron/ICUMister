@@ -1,3 +1,5 @@
+import logging
+
 from azure.keyvault import KeyVaultClient, KeyVaultAuthentication
 from azure.common.credentials import ServicePrincipalCredentials
 
@@ -7,6 +9,7 @@ class KeyVaultFetcher(object):
         super(KeyVaultFetcher, self).__init__()
         self._keyvault = config_json.get("keyvault")
         self._credentials = None
+        self._logger = logging.getLogger("ICUMister." + __name__)
 
         def auth_callback(server, resource, scope):
             self._credentials = ServicePrincipalCredentials(
@@ -23,5 +26,6 @@ class KeyVaultFetcher(object):
         self._vault_url = self._keyvault.get('vault_url')
 
     def get_secret(self, secret_id):
+        self._logger.debug("Fetching secret " + secret_id)
         secret_bundle = self._client.get_secret(self._vault_url, secret_id, '')
         return secret_bundle.value

@@ -1,16 +1,13 @@
 from abc import ABCMeta, abstractmethod
-from logging import Logger
+import logging
 
 
 class CameraHandler(object):
     __metaclass__ = ABCMeta
 
-    def __init__(self, logger):
-        """
-        :type logger: Logger
-        """
+    def __init__(self):
         self._can_run = True
-        self._logger = logger
+        self._logger = logging.getLogger("ICUMister." + __name__)
         super(CameraHandler, self).__init__()
 
     @abstractmethod

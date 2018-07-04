@@ -16,11 +16,11 @@ def load_config():
 def main():
     logger = get_logger("ICUMister")
 
-    camera_handler, face_identification, face_verification, notifier = HandlersFactory.create_dummies(logger)
-    set_sigint(logger, camera_handler)
+    camera_handler, face_identification, face_verification, notifier = HandlersFactory.create_dummies()
+    set_sigint(camera_handler)
     config = load_config()
 
-    jpeg_handler = JPEGHandler(logger, face_identification, face_verification, notifier)
+    jpeg_handler = JPEGHandler(face_identification, face_verification, notifier)
 
     app_runner = AppRunner(config)
     app_runner.initialize()

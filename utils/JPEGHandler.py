@@ -2,12 +2,11 @@ from identification.FaceIdentification import FaceIdentification
 from notifier.Notifier import Notifier
 from verification.FaceVerification import FaceVerification
 from KeyVaultFetcher import KeyVaultFetcher
-from logging import Logger
+import logging
 
 class JPEGHandler(object):
-    def __init__(self, logger, face_identification, face_verification, notifier):
+    def __init__(self, face_identification, face_verification, notifier):
         """
-        :type logger: Logger
         :type face_identification: FaceIdentification
         :type face_verification: FaceVerification
         :type notifier: Notifier
@@ -16,7 +15,7 @@ class JPEGHandler(object):
         self._notifier = notifier
         self._face_verification = face_verification
         self._face_identification = face_identification
-        self._logger = logger
+        self._logger = logging.getLogger("ICUMister." + __name__)
 
     def handle(self, jpeg_data):
         if not self._face_identification.is_face(jpeg_data):
