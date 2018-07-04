@@ -1,7 +1,7 @@
 import json
 
 from utils.AppRunner import AppRunner
-from utils.HandlersFactor import HandlersFactory
+from utils.HandlersFactory import HandlersFactory
 from utils.JPEGHandler import JPEGHandler
 from utils.logger import get_logger
 
