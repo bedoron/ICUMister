@@ -1,9 +1,9 @@
-from identification.FaceIdentificationDummy import FaceIdentificationDummy
-from identification.FaceIdentificationREST import FaceIdentificationREST
+from detection.FaceDetectionDummy import FaceDetectionDummy
+from detection.FaceDetectionREST import FaceDetectionREST
 from notifier.NotifierDummy import NotifierDummy
 from peripherals.CameraHandlerDummy import CameraHandlerDummy
-from verification.FaceVerificationDummy import FaceVerificationDummy
-from verification.FaceVerificationREST import FaceVerificationREST
+from identification.FaceIdentificationDummy import FaceIdentificationDummy
+from identification.FaceIdentificationREST import FaceIdentificationREST
 
 
 class HandlersFactory(object):
@@ -12,11 +12,11 @@ class HandlersFactory(object):
         """
         :return:
         """
-        return FaceIdentificationDummy(), FaceVerificationDummy(), NotifierDummy()
+        return FaceDetectionDummy(), FaceIdentificationDummy(), NotifierDummy()
 
     @staticmethod
     def create_pipeline_rest():
-        return FaceIdentificationREST(), FaceVerificationREST(), NotifierDummy()
+        return FaceDetectionREST(), FaceIdentificationREST(), NotifierDummy()
 
     @staticmethod
     def create_camera_dummy():

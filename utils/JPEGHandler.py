@@ -1,6 +1,6 @@
-from identification.FaceIdentification import FaceIdentification
+from detection.FaceDetection import FaceDetection
 from notifier.Notifier import Notifier
-from verification.FaceVerification import FaceVerification
+from identification.FaceIdentification import FaceIdentification
 import logging
 
 
@@ -15,8 +15,8 @@ class JPEGHandler(object):
         face_identification, face_verification, notifier = pipeline_supplier()
 
         self._notifier = notifier  # type: Notifier
-        self._face_verification = face_verification  # type: FaceVerification
-        self._face_identification = face_identification  # type: FaceIdentification
+        self._face_verification = face_verification  # type: FaceIdentification
+        self._face_identification = face_identification  # type: FaceDetection
 
     def handle(self, jpeg_data):
         face_identification_result = self._face_identification.is_face(jpeg_data)
@@ -24,7 +24,7 @@ class JPEGHandler(object):
             return
 
         verification_result = self._face_verification.verify_face(jpeg_data, face_identification_result)
-        if verification_result.is_verified:
+        if verification_result.is_identified:
             self._logger.info("Found verified face, ignoring")
             return
 

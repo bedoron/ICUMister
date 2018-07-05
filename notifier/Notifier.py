@@ -1,4 +1,4 @@
-from verification.FaceVerification import FaceVerificationResult
+from identification.FaceIdentification import FaceIdentificationResult
 from abc import ABCMeta, abstractmethod
 import logging
 
@@ -13,7 +13,7 @@ class Notifier(object):
     def notify(self, face_verification_result):
         """
         Notify user
-        :type face_verification_result: FaceVerificationResult
+        :type face_verification_result: FaceIdentificationResult
         :return:
         """
         raise NotImplementedError()
