@@ -1,22 +1,22 @@
-from AppRunner import AppRunner
-import logging
+from peripherals.CameraHandler import CameraHandler
+from logging import Logger
 import sys, signal
 
 
-def set_sigint(app_runner):
+def set_sigint(logger, camera_handler):
     """
-    :type camera_handler: AppRunner
+    :type logger: Logger
+    :type camera_handler: CameraHandler
     :return:
     """
 
     def signal_handler(signal, frame):
-        logger = logging.getLogger()
         logger.warn("SIGINT detected")
-        app_runner.stop()
-        sys.exit(-1)
+        if camera_handler.is_running:
+            camera_handler.stop()
+        else:
+            logger.error("Exiting violently")
+            sys.exit(-1)
 
     signal.signal(signal.SIGINT, signal_handler)
     signal.signal(signal.SIGABRT, signal_handler)
-
-
-
