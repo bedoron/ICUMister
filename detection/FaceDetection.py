@@ -8,8 +8,9 @@ import logging
 class FaceDetection(object):
     __metaclass__ = ABCMeta
 
-    def __init__(self,):
+    def __init__(self, config_json):
         super(FaceDetection, self).__init__()
+        self._config_json = config_json
         self._logger = logging.getLogger("ICUMister." + __name__)
 
     @abstractmethod

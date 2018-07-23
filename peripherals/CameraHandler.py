@@ -5,8 +5,9 @@ import logging
 class CameraHandler(object):
     __metaclass__ = ABCMeta
 
-    def __init__(self):
+    def __init__(self, config_json):
         self._can_run = True
+        self._config_json = config_json
         self._logger = logging.getLogger("ICUMister." + __name__)
         super(CameraHandler, self).__init__()
 

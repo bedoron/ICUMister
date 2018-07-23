@@ -1,0 +1,21 @@
+title Face identification
+
+Device->Face API: Detect face
+Face API -> Device: Face GUIDs
+Device->Face API: Identify face\nin known faces\ngroup
+Face API -> Device: Is identified
+
+note right of Device: Conditional handling
+opt Unidentified face
+    Device->Face API: Identify face\nin "unknown faces"\ngroup
+    Face API->Device: is face seen
+
+    opt Unseen & unidentified face
+        Device->Control Panel: add new unknown face\nto web interface
+        Device->Face API: train "unknown faces"\nwith current face
+        Face API->Device: ACK
+    end
+end
+Device->Event hub: Person detected
+
+KeyVaultClient

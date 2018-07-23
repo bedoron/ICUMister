@@ -19,7 +19,7 @@ def main():
     config = load_config()
 
     app_runner = AppRunner(config, HandlersFactory.create_camera_dummy, HandlersFactory.create_pipeline_rest)
-    set_sigint(app_runner)
+    set_sigint(logger, app_runner)
     app_runner.run()
 
     logger.info("Bye bye")
