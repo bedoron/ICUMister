@@ -22,10 +22,9 @@ class CameraHandlerOCV(CameraHandler):
         self.video_capture = cv2.VideoCapture(0)
         self.frame = None
         self.cascPath = 'peripherals/haarcascades/haarcascade_frontalface_default.xml'
-        self.faceCascade = cv2.CascadeClassifier(self.cascPath)
         self._tmp_jpg_file_name = 'tmp.jpg'
-        self._tmp_file_file_name_container = OCVFileContainer(self._tmp_jpg_file_name)
-        self._sleep_sec = 10
+        self.image_size = (320, 240)
+        self.faceCascade = cv2.CascadeClassifier(self.cascPath)
 
     def is_face(self, face_image):
         gray = cv2.cvtColor(face_image, cv2.COLOR_BGR2GRAY)
@@ -33,7 +32,7 @@ class CameraHandlerOCV(CameraHandler):
             gray,
             scaleFactor=1.2,
             minNeighbors=5,
-            minSize=(30, 30),
+            minSize=(150, 150),
             flags=cv2.CASCADE_SCALE_IMAGE
         )
 
@@ -44,19 +43,28 @@ class CameraHandlerOCV(CameraHandler):
 
     def get_next_image(self):
         with self as s:
+            log_once = True
             while self._can_run:
-                self.frame = s.get_frame()
-                if self.is_face(self.frame):
+                self.frame = None
+                if log_once:
+                    self._logger.info("OpenCV looking for faces")
+                    log_once = False
+                frame = s.get_frame()
+                if self.is_face(frame):
+                    self.frame = frame
+                    log_once = True
                     yield s.get_mjpeg()
 
     def get_frame(self):
-        ret, frame = self.video_capture.read()
+        #hack for raspberrypi
+        for i in range(10):
+            ret, frame = self.video_capture.read()
         return frame
 
     def get_mjpeg(self):
-        cv2.imwrite(self._tmp_file_file_name_container.get_name(), self.frame)  # save frame as JPEG file
-        jpeg_data = self._tmp_file_file_name_container
-        return jpeg_data
+        # cv2.imwrite(self._tmp_jpg_file_name, cv2.resize(self.frame, self.image_size))
+        cv2.imwrite(self._tmp_jpg_file_name, self.frame)
+        return OCVFileContainer(self._tmp_jpg_file_name)
 
     def _setup_camera(self):
         pass
