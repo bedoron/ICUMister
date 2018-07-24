@@ -1,6 +1,7 @@
 from detection.FaceDetectionDummy import FaceDetectionDummy
 from detection.FaceDetectionREST import FaceDetectionREST
 from notifier.NotifierDummy import NotifierDummy
+from notifier.NotifierREST import NotifierREST
 from peripherals.CameraHandlerDummy import CameraHandlerDummy
 from identification.FaceIdentificationDummy import FaceIdentificationDummy
 from identification.FaceIdentificationREST import FaceIdentificationREST
@@ -16,7 +17,7 @@ class HandlersFactory(object):
 
     @staticmethod
     def create_pipeline_rest(config_json):
-        return FaceDetectionREST(config_json), FaceIdentificationREST(config_json), NotifierDummy(config_json)
+        return FaceDetectionREST(config_json), FaceIdentificationREST(config_json), NotifierREST(config_json)
 
     @staticmethod
     def create_camera_dummy(config_json):

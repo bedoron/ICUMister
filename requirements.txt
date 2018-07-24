@@ -19,6 +19,8 @@ cryptography==2.3
 entrypoints==0.2.3
 enum34==1.1.6
 futures==3.2.0
+http==0.02
+
 idna==2.7
 ipaddress==1.0.22
 isodate==0.6.0

@@ -1,12 +1,13 @@
 from peripherals.CameraHandler import CameraHandler
 from logging import Logger
 import sys, signal
+from AppRunner import AppRunner
 
 
 def set_sigint(logger, app_runner):
     """
     :type logger: Logger
-    :type camera_handler: CameraHandler
+    :type app_runner: AppRunner
     :return:
     """
 

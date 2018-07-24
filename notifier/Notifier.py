@@ -1,6 +1,7 @@
 from identification.FaceIdentification import FaceIdentificationResult
 from abc import ABCMeta, abstractmethod
 import logging
+import NotificationHub
 
 class Notifier(object):
     __metaclass__ = ABCMeta
@@ -17,4 +18,5 @@ class Notifier(object):
         :type face_verification_result: FaceIdentificationResult
         :return:
         """
+
         raise NotImplementedError()

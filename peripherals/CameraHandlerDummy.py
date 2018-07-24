@@ -14,7 +14,7 @@ class DummyFileContainer(FileContainer):
 
 class CameraHandlerDummy(CameraHandler):
     def get_mjpeg(self):
-        return DummyFileContainer('resources/images/doron.jpg')
+        return DummyFileContainer('c:\\test\\roger.jpg')
 
     def _setup_camera(self):
         pass
