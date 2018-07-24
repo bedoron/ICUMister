@@ -11,7 +11,7 @@ class FaceIdentificationREST(FaceIdentification):
         super(FaceIdentificationREST, self).__init__(config_json)
         self._pg_id = self._config_json.get('cognitive_face', {}).get('person_group', {}).get('id', None)
 
-    def verify_face(self, face_image, face_identification_result):
+    def identify_face(self, face_image, face_identification_result):
         status = CF.person_group.get_status(self._pg_id)
         if status['status'] == 'failed':
             self._logger.error("PersonGroup status is failure, treating person as stranger. %s", status)

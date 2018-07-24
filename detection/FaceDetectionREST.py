@@ -7,10 +7,10 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
 class FaceDetectionREST(FaceDetection):
-    def get_faces_from_jpeg(self, face_image):
+    def detect_faces_from_jpeg(self, face_image):
         result = CF.face.detect(face_image, face_id=True, attributes="gender,age")
 
         if len(result) > 0:
-            self._logger.info("Identified face at: %s", result)
+            self._logger.info("detected face at: %s", result)
 
         return result
