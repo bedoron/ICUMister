@@ -18,7 +18,7 @@ def main():
     logger = get_logger("ICUMister")
     config = load_config()
 
-    app_runner = AppRunner(config, HandlersFactory.create_camera_dummy, HandlersFactory.create_pipeline_rest)
+    app_runner = AppRunner(config, HandlersFactory.create_camera_ocv, HandlersFactory.create_pipeline_rest)
     set_sigint(logger, app_runner)
     app_runner.run()
 
