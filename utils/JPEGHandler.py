@@ -22,7 +22,7 @@ class JPEGHandler(object):
 
     def handle(self, jpeg_data):
         try:
-            face_identification_result = self._face_identification.is_face(jpeg_data)
+            face_identification_result = self._face_identification.get_faces_from_jpeg(jpeg_data)
             if len(face_identification_result) == 0:
                 return
 

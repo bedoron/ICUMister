@@ -3,10 +3,11 @@ from abc import ABCMeta, abstractmethod
 
 
 class FaceIdentificationResult(object):
-    def __init__(self, identification_result, is_identified, face_image):
+    def __init__(self, identification_result, is_identified, face_image, identified_name=None):
         self._identification_result = identification_result
         self._is_identified = is_identified
         self._face_image = face_image
+        self._identified_name = identified_name
 
     @property
     def is_identified(self):

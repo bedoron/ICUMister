@@ -105,3 +105,6 @@ venv.bak/
 
 # ignore Idan
 .gadot
+.idea/ICUMister.iml
+.idea/misc.xml
+.idea/workspace.xml
