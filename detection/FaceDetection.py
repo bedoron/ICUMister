@@ -14,7 +14,7 @@ class FaceDetection(object):
         self._logger = logging.getLogger("ICUMister." + __name__)
 
     @abstractmethod
-    def get_faces_from_jpeg(self, face_image):
+    def detect_faces_from_jpeg(self, face_image):
         """
         list of face ids, if no face is detected then return empty list
         :rtype: list

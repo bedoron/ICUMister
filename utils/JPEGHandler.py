@@ -14,27 +14,27 @@ class JPEGHandler(object):
         super(JPEGHandler, self).__init__()
         self._logger = logging.getLogger("ICUMister." + __name__)
 
-        face_identification, face_verification, notifier = pipeline_supplier(config)
+        face_detection, face_identification, notifier = pipeline_supplier(config)
 
         self._notifier = notifier  # type: Notifier
-        self._face_verification = face_verification  # type: FaceIdentification
-        self._face_identification = face_identification  # type: FaceDetection
+        self._face_identification = face_identification  # type: FaceIdentification
+        self._face_detection = face_detection  # type: FaceDetection
         self._error_handler = error_handler
         self._sleep_sec = 3
 
     def handle(self, jpeg_data):
         try:
-            face_identification_result = self._face_identification.get_faces_from_jpeg(jpeg_data)
-            if len(face_identification_result) == 0:
+            face_detection_result = self._face_detection.detect_faces_from_jpeg(jpeg_data)
+            if len(face_detection_result) == 0:
                 self._logger.error("Faces detected locally but not identified by FaceDetection")
                 return
 
-            verification_result = self._face_verification.verify_face(jpeg_data, face_identification_result)
-            if verification_result.is_identified:
-                self._logger.info("Found verified face, ignoring")
+            identification_result = self._face_identification.identify_face(jpeg_data, face_detection_result)
+            if identification_result.is_identified:
+                self._logger.info("Found detected face, ignoring")
                 return
-            self._notifier.notify(verification_result)
 
+            self._notifier.notify(identification_result)
             self._logger.info("Sleeping for {}".format(self._sleep_sec))
             time.sleep(self._sleep_sec)
 
