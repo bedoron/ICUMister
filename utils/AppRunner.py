@@ -1,6 +1,7 @@
 import logging
 import sys
 
+import requests
 from cognitive_face import CognitiveFaceException
 
 from JPEGHandler import JPEGHandler
@@ -18,6 +19,9 @@ class AppRunner(object):
         self._kv = KeyVaultFetcher()
 
         self.configure_cf(config, self._kv)
+
+        self._detect_endpoint = config['icumisterEndpoint']
+        self._access_token = None
 
         self._jpeg_handler = JPEGHandler(config, pipeline_factory, self.error_handler)
         self._camera_handler = camera_factory(config)  # type: CameraHandler
@@ -69,4 +73,7 @@ class AppRunner(object):
 
     def run(self):
         for jpeg in self._camera_handler.get_next_image():
-            self._jpeg_handler.handle(jpeg)
+            image_binary_data = jpeg.read()
+            response = requests.post(self._detect_endpoint, data=image_binary_data)
+            self._logger.info('Detection result: %s', response.content)
+

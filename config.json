@@ -9,7 +9,7 @@
       "id": "hackathonpersongroup"
     },
 
-
+    "icumisterEndpoint": "https://icumister.azurewebsites.net/detect",
     "kv_id": "faceKey1",
     "kv_id2": "faceKey2"
   }
