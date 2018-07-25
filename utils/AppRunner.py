@@ -8,6 +8,7 @@ from JPEGHandler import JPEGHandler
 from KeyVaultFetcher import KeyVaultFetcher
 from peripherals.CameraHandler import CameraHandler
 import cognitive_face as CF
+import time
 
 
 class AppRunner(object):
@@ -21,6 +22,7 @@ class AppRunner(object):
         self.configure_cf(config, self._kv)
 
         self._detect_endpoint = config['icumisterEndpoint']
+        self._sleep_sec = config['sleep_between_detections']
         self._access_token = None
 
         self._jpeg_handler = JPEGHandler(config, pipeline_factory, self.error_handler)
@@ -76,4 +78,5 @@ class AppRunner(object):
             image_binary_data = jpeg.read()
             response = requests.post(self._detect_endpoint, data=image_binary_data)
             self._logger.info('Detection result: %s', response.content)
-
+            self._logger.info("Sleeping for {}".format(self._sleep_sec))
+            time.sleep(self._sleep_sec)

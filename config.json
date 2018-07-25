@@ -3,14 +3,14 @@
     "subscription": "d70f123a-259f-4fc5-b9af-82939d92b9d2",
     "endpoint": "https://westeurope.api.cognitive.microsoft.com/face/v1.0",
     "name": "faceAPI",
-
     "person_group": {
       "name": "HackathonPersonGroup",
       "id": "hackathonpersongroup"
     },
-
     "icumisterEndpoint": "https://icumister.azurewebsites.net/detect",
     "kv_id": "faceKey1",
     "kv_id2": "faceKey2"
-  }
+  },
+  "icumisterEndpoint": "https://icumistercontrolpanel.azurewebsites.net/detect",
+  "sleep_between_detections": 5
 }
