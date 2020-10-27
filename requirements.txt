@@ -15,7 +15,7 @@ cffi==1.11.5
 chardet==3.0.4
 cognitive-face==1.4.1
 configparser==3.5.0
-cryptography==2.3
+cryptography==3.2
 entrypoints==0.2.3
 enum34==1.1.6
 futures==3.2.0
