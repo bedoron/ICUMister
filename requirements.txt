@@ -30,7 +30,7 @@ msrestazure==0.4.34
 oauthlib==2.1.0
 pathlib2==2.3.2
 pycparser==2.18
-PyJWT==1.6.4
+PyJWT==2.4.0
 python-dateutil==2.7.3
 pywin32-ctypes==0.1.2
 requests==2.19.1
