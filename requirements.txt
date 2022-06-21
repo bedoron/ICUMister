@@ -39,6 +39,6 @@ scandir==1.7
 six==1.11.0
 typing==3.6.4
 urllib3==1.23
-numpy==1.13.1
+numpy==1.22.0
 Matplotlib==2.0.2
 imutils==0.4.6
