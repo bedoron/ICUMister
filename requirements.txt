@@ -10,7 +10,7 @@ azure-mgmt-cognitiveservices==2.0.0
 azure-mgmt-eventhub==1.2.0
 azure-mgmt-keyvault==0.40.0
 azure-mgmt-notificationhubs==1.0.0
-certifi==2018.4.16
+certifi==2022.12.7
 cffi==1.11.5
 chardet==3.0.4
 cognitive-face==1.4.1
